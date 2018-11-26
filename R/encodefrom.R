@@ -2,16 +2,17 @@
 #'
 #' @param .data Data frame or tbl_df
 #' @param var Column name of vector to be encoded
-#' @param cw_file String of external crosswalk file, including path,
-#'     which has columns representing \code{raw} (current) vector
-#'     values, \code{clean} (new) vector values, and \code{label}s for
-#'     values. Values in \code{raw} and \code{clean} columns must be
-#'     unique (1:1 match) or an error will be thrown. Acceptable file
-#'     types include: delimited (.csv, .tsv, or other), R (.rda,
-#'     .rdata, .rds), or Stata (.dta).
+#' @param cw_file Either data frame object or string with path to
+#'     external crosswalk file, including path, which has columns
+#'     representing \code{raw} (current) vector values, \code{clean}
+#'     (new) vector values, and \code{label}s for values. Values in
+#'     \code{raw} and \code{clean} columns must be unique (1:1 match)
+#'     or an error will be thrown. Acceptable file types include:
+#'     delimited (.csv, .tsv, or other), R (.rda, .rdata, .rds), or
+#'     Stata (.dta).
 #' @param raw Name of column in \code{cw_file} that contains values in
 #'     current vector.
-#' @param clean Name of column in \code{cw_file} that contains new new
+#' @param clean Name of column in \code{cw_file} that contains new
 #'     values for vector.
 #' @param label Name of column in \code{cw_file} with labels for new
 #'     values.
@@ -90,8 +91,8 @@ encodefrom_ <- function(.data,
     else { cw <- cw_file }
 
     ## convert everything to character
-    .data[] <- lapply(.data, as.character)
-    cw[] <- lapply(cw, as.character)
+    .data[] <- lapply(.data, factor_to_character)
+    cw[] <- lapply(cw, factor_to_character)
 
     ## confirm columns are in crosswalk
     confirm_col(cw, raw, 'm1')
@@ -118,6 +119,9 @@ encodefrom_ <- function(.data,
     ## convert raw to clean values
     mask <- match(val_vec, cw[[raw]], nomatch = 0)
     val_vec[mask != 0] <- cw[[clean]][mask]
+
+    ## convert new clean values to type found in crosswalk
+    class(val_vec) <- class(cw[[clean]])
 
     if (tibble::is_tibble(.data) && !ignore_tibble) {
 

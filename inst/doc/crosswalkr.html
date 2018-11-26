@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Renaming</title>
+<title>File 1</title>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -210,8 +210,6 @@ maintain a master data set and it is important for replicability and
 future collaboration that the team rely on consistent naming and
 encoding conventions.</p>
 
-<h2>Renaming</h2>
-
 <p>For example, let&#39;s say there are three flat files of student
 information that need to be merged into a single large data set for
 analysis.</p>
@@ -259,7 +257,7 @@ analysis.</p>
 <tr>
 <td align="left">4</td>
 <td align="left">Washington</td>
-<td align="left">2</td>
+<td align="left">35</td>
 <td align="left">92</td>
 </tr>
 <tr>
@@ -343,7 +341,7 @@ df
 ## 1  1    Jackson           VA    74
 ## 2  2   Harrison           KY    86
 ## 3  3      Nixon           IL    78
-## 4  4 Washington            2    92
+## 4  4 Washington           35    92
 ## 5  5  Roosevelt           11    82
 ## 6  6     Taylor           47    89
 ## 7  7      Tyler North Dakota    91
@@ -354,7 +352,7 @@ df
 <p>The problem, of course, is there is a lot of room for error since the
 renaming process has to be repeated for each data frame. </p>
 
-<h3>Crosswalk</h3>
+<h3>Using a crosswalk file</h3>
 
 <p>Instead, it makes more sense to create a crosswalk data set that
 aligns old (or raw) column names with new (or clean) column names and,
@@ -399,11 +397,35 @@ if desired, labels. The <code>crosswalk</code> to join these files could be:</p>
 </tr>
 </tbody></table>
 
+<p>The crosswalk file (<code>cw_file</code>) could be:  </p>
+
+<ol>
+<li>Data frame object already in memory<br/></li>
+<li>A string with path and name (<em>e.g.</em>, <code>&#39;./path/to/crosswalk.csv&#39;</code>) of a
+flat file of one of the following types:<br/>
+
+<ol>
+<li>Comma separated (<code>*.csv</code>)<br/></li>
+<li>Tab separated (<code>*.tsv</code>)<br/></li>
+<li>Other delimited (<code>*.txt</code>) with <code>delimiter</code> option set to
+delimiter string (<em>e.g.</em>, <code>delimiter = &#39;|&#39;</code>)<br/></li>
+<li>Excel (<code>*.xls</code> or <code>*.xlsx</code>) with <code>sheet</code> option set to sheet
+number or string name (defaulting to the first sheet)<br/></li>
+<li>R data (<code>*.rdata</code>, <code>*.rda</code>, <code>*.rds</code>)<br/></li>
+<li>Stata data (<code>*.dta</code>)<br/></li>
+</ol></li>
+</ol>
+
+<p>If given a string to the <code>cw_file</code> argument, <code>renamefrom()</code> and
+<code>encodefrom()</code> determine the type of file by its ending.</p>
+
+<h2>Renaming</h2>
+
 <p>To rename using the <code>renamefrom()</code> command:</p>
 
-<pre><code class="r">df1 &lt;- renamefrom(file_1, crosswalk, raw = file_1_raw, clean = clean, label = label)
-df2 &lt;- renamefrom(file_2, crosswalk, raw = file_2_raw, clean = clean, label = label)
-df3 &lt;- renamefrom(file_3, crosswalk, raw = file_3_raw, clean = clean, label = label)
+<pre><code class="r">df1 &lt;- renamefrom(file_1, cw_file = crosswalk, raw = file_1_raw, clean = clean, label = label)
+df2 &lt;- renamefrom(file_2, cw_file = crosswalk, raw = file_2_raw, clean = clean, label = label)
+df3 &lt;- renamefrom(file_3, cw_file = crosswalk, raw = file_3_raw, clean = clean, label = label)
 
 df &lt;- rbind(df1, df2, df3)
 df
@@ -413,7 +435,7 @@ df
 ## 1  1    Jackson           VA    74
 ## 2  2   Harrison           KY    86
 ## 3  3      Nixon           IL    78
-## 4  4 Washington            2    92
+## 4  4 Washington           35    92
 ## 5  5  Roosevelt           11    82
 ## 6  6     Taylor           47    89
 ## 7  7      Tyler North Dakota    91
@@ -452,18 +474,23 @@ for encoding these values could be used. The <code>crosswalkr</code> package
 includes a state-level crosswalk, <code>stcrosswalk</code>:</p>
 
 <pre><code class="r">data(stcrosswalk)
-head(stcrosswalk)
+stcrosswalk
 </code></pre>
 
-<pre><code>## # A tibble: 6 x 7
-##   stfips stabbr     stname cenreg cenregnm cendiv           cendivnm
-##    &lt;int&gt;  &lt;chr&gt;      &lt;chr&gt;  &lt;int&gt;    &lt;chr&gt;  &lt;int&gt;              &lt;chr&gt;
-## 1      1     AL    Alabama      3    South      6 East South Central
-## 2      2     AK     Alaska      4     West      9            Pacific
-## 3      4     AZ    Arizona      4     West      8           Mountain
-## 4      5     AR   Arkansas      3    South      7 West South Central
-## 5      6     CA California      4     West      9            Pacific
-## 6      8     CO   Colorado      4     West      8           Mountain
+<pre><code>## # A tibble: 51 x 7
+##    stfips stabbr stname            cenreg cenregnm  cendiv cendivnm       
+##     &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;          
+##  1      1 AL     Alabama                3 South          6 East South Cen…
+##  2      2 AK     Alaska                 4 West           9 Pacific        
+##  3      4 AZ     Arizona                4 West           8 Mountain       
+##  4      5 AR     Arkansas               3 South          7 West South Cen…
+##  5      6 CA     California             4 West           9 Pacific        
+##  6      8 CO     Colorado               4 West           8 Mountain       
+##  7      9 CT     Connecticut            1 Northeast      1 New England    
+##  8     10 DE     Delaware               3 South          5 South Atlantic 
+##  9     11 DC     District of Colu…      3 South          5 South Atlantic 
+## 10     12 FL     Florida                3 South          5 South Atlantic 
+## # ... with 41 more rows
 </code></pre>
 
 <p>The <code>encodefrom()</code> function works much like <code>renamefrom()</code>. The only
@@ -473,10 +500,9 @@ added to an existing dataframe. </p>
 <p><code>encodefrom()</code> returns either base R factors or labels depending on
 whether the input data frame is a tibble.</p>
 
-<h3>return factor</h3>
+<h4>factor</h4>
 
-<pre><code class="r">df1$state &lt;- encodefrom(file_1, var = stat, stcrosswalk, raw = stabbr,
-                        clean = stfips, label = stname)
+<pre><code class="r">df1$state &lt;- encodefrom(file_1, var = stat, stcrosswalk, raw = stabbr, clean = stfips, label = stname)
 df1
 </code></pre>
 
@@ -490,10 +516,10 @@ df1
 </code></pre>
 
 <pre><code>##          id   last_name      stabbr       score       state 
-## &quot;character&quot; &quot;character&quot; &quot;character&quot; &quot;character&quot;    &quot;factor&quot;
+##   &quot;integer&quot; &quot;character&quot; &quot;character&quot;   &quot;numeric&quot;    &quot;factor&quot;
 </code></pre>
 
-<h3>return labelled vector</h3>
+<h4>labelled vector</h4>
 
 <pre><code class="r">file_1_ &lt;- file_1 %&gt;% tbl_df()
 df1$state &lt;- encodefrom(file_1_, var = stat, stcrosswalk, raw = stabbr,
@@ -525,10 +551,14 @@ as_factor(df1)
             tbl_df() %&gt;%
             renamefrom(., crosswalk, file_1_raw, clean, label) %&gt;%
             mutate(stabbr = encodefrom(., stabbr, stcrosswalk, stabbr, stfips, stname)),
+
+            ## append file 2
             file_2 %&gt;%
             tbl_df() %&gt;%
             renamefrom(., crosswalk, file_2_raw, clean, label) %&gt;%
             mutate(stabbr = encodefrom(., stabbr, stcrosswalk, stfips, stfips, stname)),
+
+            ## append file 3
             file_3 %&gt;%
             tbl_df() %&gt;%
             renamefrom(., crosswalk, file_3_raw, clean, label) %&gt;%
@@ -538,34 +568,34 @@ df
 </code></pre>
 
 <pre><code>## # A tibble: 9 x 4
-##      id  last_name    stabbr score
-##   &lt;chr&gt;      &lt;chr&gt; &lt;chr+lbl&gt; &lt;chr&gt;
-## 1     1    Jackson        51    74
-## 2     2   Harrison        21    86
-## 3     3      Nixon        17    78
-## 4     4 Washington         2    92
-## 5     5  Roosevelt        11    82
-## 6     6     Taylor        47    89
-## 7     7      Tyler        38    91
-## 8     8      Grant        46    82
-## 9     9      Adams        17    89
+##      id last_name  stabbr    score
+##   &lt;int&gt; &lt;chr&gt;      &lt;int+lbl&gt; &lt;dbl&gt;
+## 1     1 Jackson    51           74
+## 2     2 Harrison   21           86
+## 3     3 Nixon      17           78
+## 4     4 Washington 35           92
+## 5     5 Roosevelt  11           82
+## 6     6 Taylor     47           89
+## 7     7 Tyler      38           91
+## 8     8 Grant      46           82
+## 9     9 Adams      17           89
 </code></pre>
 
-<pre><code class="r">as_factor(df)
+<pre><code class="r">as_factor(df)            
 </code></pre>
 
 <pre><code>## # A tibble: 9 x 4
-##      id  last_name               stabbr score
-##   &lt;chr&gt;      &lt;chr&gt;               &lt;fctr&gt; &lt;chr&gt;
-## 1     1    Jackson             Virginia    74
-## 2     2   Harrison             Kentucky    86
-## 3     3      Nixon             Illinois    78
-## 4     4 Washington               Alaska    92
-## 5     5  Roosevelt District of Columbia    82
-## 6     6     Taylor            Tennessee    89
-## 7     7      Tyler         North Dakota    91
-## 8     8      Grant         South Dakota    82
-## 9     9      Adams             Illinois    89
+##      id last_name  stabbr               score
+##   &lt;int&gt; &lt;chr&gt;      &lt;fct&gt;                &lt;dbl&gt;
+## 1     1 Jackson    Virginia                74
+## 2     2 Harrison   Kentucky                86
+## 3     3 Nixon      Illinois                78
+## 4     4 Washington New Mexico              92
+## 5     5 Roosevelt  District of Columbia    82
+## 6     6 Taylor     Tennessee               89
+## 7     7 Tyler      North Dakota            91
+## 8     8 Grant      South Dakota            82
+## 9     9 Adams      Illinois                89
 </code></pre>
 
 </body>
