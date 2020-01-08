@@ -1,6 +1,6 @@
 Package: crosswalkr
 Title: Rename and Encode Data Frames Using External Crosswalk Files
-Version: 0.2.5
+Version: 0.2.6
 Authors@R: person("Benjamin", "Skinner",
 	          email = "btskinner@coe.ufl.edu",
     	          role = c("aut", "cre"),
@@ -17,12 +17,12 @@ Imports: haven, labelled, methods, readr, readxl, tibble
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: testthat, knitr, rmarkdown, dplyr
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-10-23 17:51:11 UTC; b.skinner
+Packaged: 2019-12-30 16:58:00 UTC; b.skinner
 Author: Benjamin Skinner [aut, cre] (<https://orcid.org/0000-0002-0337-7415>)
 Maintainer: Benjamin Skinner <btskinner@coe.ufl.edu>
 Repository: CRAN
-Date/Publication: 2019-10-23 23:50:11 UTC
+Date/Publication: 2020-01-08 14:30:02 UTC
