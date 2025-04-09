@@ -1,10 +1,10 @@
-## ---- message = FALSE---------------------------------------------------------
+## ----message = FALSE----------------------------------------------------------
 library(crosswalkr)
 library(dplyr)
 library(labelled)
 library(haven)
 
-## ---- echo = FALSE------------------------------------------------------------
+## ----echo = FALSE-------------------------------------------------------------
 file_1 <- data.frame(sid = c(1:3),
                      lname = c('Jackson','Harrison','Nixon'),
                      stat = c('VA','KY','IL'),
@@ -45,7 +45,7 @@ df <- rbind(df1, df2, df3)
 df
 
 
-## ---- echo = FALSE------------------------------------------------------------
+## ----echo = FALSE-------------------------------------------------------------
 crosswalk <- data.frame(clean = c('id','last_name','stabbr','score'),
                         label = c('Student ID','Student last name',
                                   'State abbreviation','Test score'),
