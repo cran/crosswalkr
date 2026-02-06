@@ -1,4 +1,4 @@
-16d528afe5979896554c793161865139 *DESCRIPTION
+eb6eb4ac4d2c0e670401ab26544cc7f0 *DESCRIPTION
 e0bfacee5d944a8cf8b1b5495193bccc *LICENSE
 fdecd4b6bd71aa466302a724ed75bc72 *NAMESPACE
 67ebd6bef6c98e2c84592352a2015811 *NEWS.md
@@ -7,15 +7,15 @@ fdecd4b6bd71aa466302a724ed75bc72 *NAMESPACE
 d1ad2e946e2cfbcc0b6f4f7869b19a05 *R/encodefrom.R
 139e6f399c43fbd0b9b4755ab22ebfee *R/renamefrom.R
 a31d6ec27df590b0b129ec86fb9c610b *R/utility_functions.R
-97fb8530ed11179bb709c4e16e1b45b1 *build/vignette.rds
+8689e7094d15f4e78ac6b936c1c05166 *build/vignette.rds
 f46c88d9d845236f15be2985290c0438 *data/stcrosswalk.rda
 6cd0599e84bfc3b5dd600b52d4841a33 *data/sttercrosswalk.rda
-ceeb3b1b36f96218cf2c4c315a9f2079 *inst/doc/collapse.R
-ffceb5a3be433704d397cb828fd04388 *inst/doc/collapse.Rmd
-52e72d9d7339aadb31a28d78a02ebca0 *inst/doc/collapse.html
-8aaeae734fd331e0d6978339f5cfd8b8 *inst/doc/crosswalkr.R
-6142bb86afbea53212ad8a965716878d *inst/doc/crosswalkr.Rmd
-6dbb933e962a8c80d4979de159b18138 *inst/doc/crosswalkr.html
+b76b6507be43bf99f2c3a76f5f717b9f *inst/doc/collapse.R
+88f13003f2c3e0031f37a598459a538d *inst/doc/collapse.Rmd
+0741bff51ef83deab9cc39b25bdeb588 *inst/doc/collapse.html
+a380427e3d5a0918d6823178c1fbf6ae *inst/doc/crosswalkr.R
+e2e95d496f9ccba58ab3835d7da1cecf *inst/doc/crosswalkr.Rmd
+4fdc2ab5c953ea7a8ef2f06a8478feaf *inst/doc/crosswalkr.html
 f46c88d9d845236f15be2985290c0438 *inst/extdata/stcrosswalk.rda
 6cd0599e84bfc3b5dd600b52d4841a33 *inst/extdata/sttercrosswalk.rda
 860d04679165359e4b7be9756742e6bf *man/crosswalkr.Rd
@@ -40,6 +40,6 @@ e36bf0b3623e1347e07c42278e4a5525 *tests/testthat/testdata/cw.xlsx
 a17d23bce6dc49bde00bb7a2b63b346a *tests/testthat/testdata/cw_dup.csv
 bff078d5cc61de98389e579c28add9a3 *tests/testthat/testdata/cw_dup_2.csv
 494bb6c178fef2ae15b9d117edff42f7 *tests/testthat/testdata/cw_dup_3.csv
-ffceb5a3be433704d397cb828fd04388 *vignettes/collapse.Rmd
-6142bb86afbea53212ad8a965716878d *vignettes/crosswalkr.Rmd
+88f13003f2c3e0031f37a598459a538d *vignettes/collapse.Rmd
+e2e95d496f9ccba58ab3835d7da1cecf *vignettes/crosswalkr.Rmd
 3aa0ece007573533885272fab6e7e12c *vignettes/vignette.css

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2025-04-08" />
+<meta name="date" content="2026-02-06" />
 
 <title>Collapsing</title>
 
@@ -341,7 +341,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">Collapsing</h1>
-<h4 class="date">2025-04-08</h4>
+<h4 class="date">2026-02-06</h4>
 
 
 
@@ -531,18 +531,19 @@ you move from raw to clean values.</p>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                       <span class="st">&#39;IL&#39;</span>,<span class="st">&#39;IN&#39;</span>,<span class="st">&#39;IA&#39;</span>,<span class="st">&#39;NJ&#39;</span>,<span class="st">&#39;NY&#39;</span>),</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>             <span class="at">cendiv =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>),</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>             <span class="at">cendiv_name =</span> <span class="fu">c</span>(<span class="st">&#39;East South Central&#39;</span>,<span class="st">&#39;Pacific&#39;</span>,<span class="st">&#39;Mountain&#39;</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>                             <span class="st">&#39;West South Central&#39;</span>,<span class="st">&#39;Pacific&#39;</span>,<span class="st">&#39;Mountain&#39;</span>,<span class="st">&#39;New England&#39;</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                             <span class="st">&#39;South Atlantic&#39;</span>,<span class="st">&#39;South Atlantic&#39;</span>,<span class="st">&#39;Pacific&#39;</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                             <span class="st">&#39;East North Central&#39;</span>,<span class="st">&#39;East North Central&#39;</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                             <span class="st">&#39;West North Central&#39;</span>,<span class="st">&#39;Middle Atlantic&#39;</span>,<span class="st">&#39;Middle Atlantic&#39;</span>))</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>             </span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="do">## crosswalk</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>cw <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cendiv =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>             <span class="at">cenreg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>),</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>             <span class="at">cenregnm =</span> <span class="fu">c</span>(<span class="st">&#39;Northeast&#39;</span>,<span class="st">&#39;Northeast&#39;</span>,<span class="st">&#39;Midwest&#39;</span>,<span class="st">&#39;Midwest&#39;</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>                          <span class="st">&#39;South&#39;</span>,<span class="st">&#39;South&#39;</span>,<span class="st">&#39;South&#39;</span>,<span class="st">&#39;West&#39;</span>,<span class="st">&#39;West&#39;</span>))</span></code></pre></div>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>                        <span class="st">&#39;West South Central&#39;</span>,<span class="st">&#39;Pacific&#39;</span>,<span class="st">&#39;Mountain&#39;</span>,<span class="st">&#39;New England&#39;</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                        <span class="st">&#39;South Atlantic&#39;</span>,<span class="st">&#39;South Atlantic&#39;</span>,<span class="st">&#39;Pacific&#39;</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                        <span class="st">&#39;East North Central&#39;</span>,<span class="st">&#39;East North Central&#39;</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>                        <span class="st">&#39;West North Central&#39;</span>,<span class="st">&#39;Middle Atlantic&#39;</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>                        <span class="st">&#39;Middle Atlantic&#39;</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>             </span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="do">## crosswalk</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>cw <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cendiv =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>             <span class="at">cenreg =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>             <span class="at">cenregnm =</span> <span class="fu">c</span>(<span class="st">&#39;Northeast&#39;</span>,<span class="st">&#39;Northeast&#39;</span>,<span class="st">&#39;Midwest&#39;</span>,<span class="st">&#39;Midwest&#39;</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>                          <span class="st">&#39;South&#39;</span>,<span class="st">&#39;South&#39;</span>,<span class="st">&#39;South&#39;</span>,<span class="st">&#39;West&#39;</span>,<span class="st">&#39;West&#39;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">## encode new column</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">cenreg =</span> <span class="fu">encodefrom</span>(., <span class="at">var =</span> cendiv, <span class="at">cw_file =</span> cw, <span class="at">raw =</span> cendiv,</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                               <span class="at">clean =</span> cenreg, <span class="at">label =</span> cenregnm))</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>df</span></code></pre></div>

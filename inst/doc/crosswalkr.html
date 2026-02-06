@@ -12,7 +12,7 @@
 
 <meta name="author" content="Benjamin Skinner" />
 
-<meta name="date" content="2025-04-08" />
+<meta name="date" content="2026-02-06" />
 
 <title>Introduction to crosswalkr</title>
 
@@ -343,7 +343,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Introduction to crosswalkr</h1>
 <h4 class="author">Benjamin Skinner</h4>
-<h4 class="date">2025-04-08</h4>
+<h4 class="date">2026-02-06</h4>
 
 
 
@@ -464,19 +464,19 @@ For example:</p>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(labelled)</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> file_1 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> file_1 <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">id =</span> sid,</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>           <span class="at">last_name =</span> lname,</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>           <span class="at">stabbr =</span> stat,</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>           <span class="at">score =</span> t_score)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> file_2 <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> file_2 <span class="sc">|&gt;</span></span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">id =</span> stu_id,</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>           <span class="at">stabbr =</span> st,</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>           <span class="at">score =</span> test_score) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>           <span class="at">score =</span> test_score) <span class="sc">|&gt;</span></span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">stabbr =</span> <span class="fu">as.character</span>(stabbr))</span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> file_3 <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> file_3 <span class="sc">|&gt;</span></span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">id =</span> s_id,</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>           <span class="at">stabbr =</span> sta,</span>
 <span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>           <span class="at">last_name =</span> name)</span>
@@ -569,12 +569,15 @@ type of file by its ending.</p>
 <div id="renaming" class="section level2">
 <h2>Renaming</h2>
 <p>To rename using the <code>renamefrom()</code> command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">renamefrom</span>(file_1, <span class="at">cw_file =</span> crosswalk, <span class="at">raw =</span> file_1_raw, <span class="at">clean =</span> clean, <span class="at">label =</span> label)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">renamefrom</span>(file_2, <span class="at">cw_file =</span> crosswalk, <span class="at">raw =</span> file_2_raw, <span class="at">clean =</span> clean, <span class="at">label =</span> label)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> <span class="fu">renamefrom</span>(file_3, <span class="at">cw_file =</span> crosswalk, <span class="at">raw =</span> file_3_raw, <span class="at">clean =</span> clean, <span class="at">label =</span> label)</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df1, df2, df3)</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">renamefrom</span>(file_1, <span class="at">cw_file =</span> crosswalk, <span class="at">raw =</span> file_1_raw, <span class="at">clean =</span> clean, </span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>                  <span class="at">label =</span> label)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">renamefrom</span>(file_2, <span class="at">cw_file =</span> crosswalk, <span class="at">raw =</span> file_2_raw, <span class="at">clean =</span> clean, </span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                  <span class="at">label =</span> label)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> <span class="fu">renamefrom</span>(file_3, <span class="at">cw_file =</span> crosswalk, <span class="at">raw =</span> file_3_raw, <span class="at">clean =</span> clean, </span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                  <span class="at">label =</span> label)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df1, df2, df3)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   id  last_name       stabbr score
 ## 1  1    Jackson           VA    74
 ## 2  2   Harrison           KY    86
@@ -634,8 +637,9 @@ dataframe.</p>
 depending on whether the input data frame is a tibble.</p>
 <div id="factor" class="section level4">
 <h4>factor</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>df1<span class="sc">$</span>state <span class="ot">&lt;-</span> <span class="fu">encodefrom</span>(file_1, <span class="at">var =</span> stat, stcrosswalk, <span class="at">raw =</span> stabbr, <span class="at">clean =</span> stfips, <span class="at">label =</span> stname)</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>df1</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>df1<span class="sc">$</span>state <span class="ot">&lt;-</span> <span class="fu">encodefrom</span>(file_1, <span class="at">var =</span> stat, stcrosswalk, <span class="at">raw =</span> stabbr, </span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                        <span class="at">clean =</span> stfips, <span class="at">label =</span> stname)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>##   id last_name stabbr score    state
 ## 1  1   Jackson     VA    74 Virginia
 ## 2  2  Harrison     KY    86 Kentucky
@@ -646,19 +650,15 @@ depending on whether the input data frame is a tibble.</p>
 </div>
 <div id="labelled-vector" class="section level4">
 <h4>labelled vector</h4>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>file_1_ <span class="ot">&lt;-</span> file_1 <span class="sc">%&gt;%</span> <span class="fu">tbl_df</span>()</span></code></pre></div>
-<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
-## ℹ Please use `tibble::as_tibble()` instead.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>df1<span class="sc">$</span>state <span class="ot">&lt;-</span> <span class="fu">encodefrom</span>(file_1_, <span class="at">var =</span> stat, stcrosswalk, <span class="at">raw =</span> stabbr,</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>                        <span class="at">clean =</span> stfips, <span class="at">label =</span> stname)</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">as_factor</span>(df1)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>file_1_ <span class="ot">&lt;-</span> file_1 <span class="sc">|&gt;</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>df1<span class="sc">$</span>state <span class="ot">&lt;-</span> <span class="fu">encodefrom</span>(file_1_, <span class="at">var =</span> stat, stcrosswalk, <span class="at">raw =</span> stabbr,</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>                        <span class="at">clean =</span> stfips, <span class="at">label =</span> stname)</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="fu">as_factor</span>(df1)</span></code></pre></div>
 <pre><code>##   id last_name stabbr score    state
 ## 1  1   Jackson     VA    74 Virginia
 ## 2  2  Harrison     KY    86 Kentucky
 ## 3  3     Nixon     IL    78 Illinois</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">zap_labels</span>(df1)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">zap_labels</span>(df1)</span></code></pre></div>
 <pre><code>##   id last_name stabbr score state
 ## 1  1   Jackson     VA    74    51
 ## 2  2  Harrison     KY    86    21
@@ -669,35 +669,27 @@ depending on whether the input data frame is a tibble.</p>
 <h2>Combined example: <code>dplyr</code> chain</h2>
 <p>The <code>renamefrom()</code> and <code>encodefrom()</code> functions
 can be combined in a <code>dplyr</code> chain.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(file_1 <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>            <span class="fu">tbl_df</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>            <span class="fu">renamefrom</span>(., crosswalk, file_1_raw, clean, label) <span class="sc">%&gt;%</span></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">stabbr =</span> <span class="fu">encodefrom</span>(., stabbr, stcrosswalk, stabbr, stfips, stname)),</span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>            <span class="do">## append file 2</span></span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>            file_2 <span class="sc">%&gt;%</span></span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>            <span class="fu">tbl_df</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>            <span class="fu">renamefrom</span>(., crosswalk, file_2_raw, clean, label) <span class="sc">%&gt;%</span></span>
-<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">stabbr =</span> <span class="fu">encodefrom</span>(., stabbr, stcrosswalk, stfips, stfips, stname)),</span>
-<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>            <span class="do">## append file 3</span></span>
-<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a>            file_3 <span class="sc">%&gt;%</span></span>
-<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a>            <span class="fu">tbl_df</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a>            <span class="fu">renamefrom</span>(., crosswalk, file_3_raw, clean, label) <span class="sc">%&gt;%</span></span>
-<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">stabbr =</span> <span class="fu">encodefrom</span>(., stabbr, stcrosswalk, stname, stfips, stname)))</span></code></pre></div>
-<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
-## ℹ Please use `tibble::as_tibble()` instead.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
-## ℹ Please use `tibble::as_tibble()` instead.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
-## ℹ Please use `tibble::as_tibble()` instead.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(file_1 <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>            tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>            <span class="fu">renamefrom</span>(crosswalk, file_1_raw, clean, label)  <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">stabbr =</span> <span class="fu">encodefrom</span>(., stabbr, stcrosswalk, stabbr, stfips, </span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>                                        stname)),</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>            <span class="do">## append file 2</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>            file_2 <span class="sc">|&gt;</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>            tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>            <span class="fu">renamefrom</span>(crosswalk, file_2_raw, clean, label) <span class="sc">%&gt;%</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">stabbr =</span> <span class="fu">encodefrom</span>(., stabbr, stcrosswalk, stfips, stfips, </span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a>                                        stname)),</span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a>            <span class="do">## append file 3</span></span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a>            file_3 <span class="sc">|&gt;</span></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a>            tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a>            <span class="fu">renamefrom</span>(crosswalk, file_3_raw, clean, label) <span class="sc">%&gt;%</span></span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">stabbr =</span> <span class="fu">encodefrom</span>(., stabbr, stcrosswalk, stname, stfips, </span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a>                                        stname)))</span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 9 × 4
 ##      id last_name  stabbr                    score
 ##   &lt;int&gt; &lt;chr&gt;      &lt;int+lbl&gt;                 &lt;dbl&gt;
@@ -710,7 +702,7 @@ can be combined in a <code>dplyr</code> chain.</p>
 ## 7     7 Tyler      38 [North Dakota]            91
 ## 8     8 Grant      46 [South Dakota]            82
 ## 9     9 Adams      17 [Illinois]                89</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">as_factor</span>(df)            </span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">as_factor</span>(df)            </span></code></pre></div>
 <pre><code>## # A tibble: 9 × 4
 ##      id last_name  stabbr               score
 ##   &lt;int&gt; &lt;chr&gt;      &lt;fct&gt;                &lt;dbl&gt;
